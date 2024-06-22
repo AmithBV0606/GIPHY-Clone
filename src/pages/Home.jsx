@@ -2,6 +2,7 @@ import React, {useEffect} from 'react'
 import { GifState } from '../context/Context'
 import Gif from '../components/Gif'
 import FilterGif from '../components/FilterGif'
+import Banner from "../assets/banner.gif"
 
 const Home = () => {
   const {gifAPI, gifs, setGifs, filter} = GifState()
@@ -24,7 +25,7 @@ const Home = () => {
   return (
     <div>
       <img 
-        src="src/assets/banner.gif" 
+        src={Banner} 
         alt="Earth Banner"
         className='mt-2 rounded-lg w-full' 
       />
