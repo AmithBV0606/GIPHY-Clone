@@ -26,15 +26,15 @@ const Home = () => {
       <img 
         src="src/assets/banner.gif" 
         alt="Earth Banner"
-        className='mt-2 rounded w-full' 
+        className='mt-2 rounded-lg w-full' 
       />
 
       {/* Filter */}
       <FilterGif showTrending />
 
       <div className='columns-2 md:columns-3 lg:columns-4 xl:columns-5 gap-2'>
-        {gifs.map((gif) => {
-          return <Gif gif={gif} key={gif.title}/>
+        {gifs.map((gif, index) => {
+          return <Gif gif={gif} key={index}/>
         })}
       </div>
 

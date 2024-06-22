@@ -35,11 +35,11 @@ const FilterGif = ({ alignLeft = false, showTrending = false}) => {
       )}
 
      <div className='flex min-w-80 rounded-full bg-gray-700'>
-        {filters.map((item) => {
+        {filters.map((item, index) => {
           return(
             <span 
               className={`font-semibold py-2 w-1/3 text-center rounded-full cursor-pointer ${filter === item.value ? item.background : ""}`}  
-              key={item.title}
+              key={index}
               onClick={() => setFilter(item.value)}
             >
               {item.title}

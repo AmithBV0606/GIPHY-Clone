@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { HiDotsVertical, HiOutlineMenuAlt3 } from "react-icons/hi";
 import { GifState } from "../context/Context";
+import GifSearch from "./GifSearch";
+import Logo from "../assets/GIPHY.svg"
 
 const Header = () => {
   const [categories, setCategories] = useState([]);
   const [showCategories, setShowCategories] = useState(false);
 
-  const { gifAPI, filter, setFilter, favorites} = GifState()
+  const { gifAPI, favorites} = GifState()
 
   const fetchGifCategories = async () => {
     const {data} = await gifAPI.categories();
@@ -26,7 +28,7 @@ const Header = () => {
         <div className="flex gap-4 justify-between items-center mb-2 relative">
 
             <Link to="/" className="flex gap-2">
-            <img src="src/assets/GIPHY.svg" alt="GIPHY Logo" className="w-8" />
+            <img src={Logo} alt="GIPHY Logo" className="w-8" />
 
             <h1 className="text-5xl font-bold tracking-tight cursor-pointer">
                 GIPHY
@@ -35,10 +37,10 @@ const Header = () => {
 
             <div className="flex items-center justify-center gap-2 font-bold text-base">
                 {/* Render Other Items */}
-                {categories?.slice(0, 5)?.map((category) => {
+                {categories?.slice(0, 5)?.map((category, index) => {
                     return (
                         <Link
-                            key={category.name} 
+                            key={index} 
                             to={`/${category.name_encoded}`} 
                             className="px-4 py-1 hover:gradient border-b-4 hidden lg:block"
                         >
@@ -73,11 +75,11 @@ const Header = () => {
                     <span className="text-3xl font-extrabold">Categories</span>
                     <hr className="bg-gray-100 opacity-50 my-5"/>
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 ">
-                        {categories?.map((category) => {
+                        {categories?.map((category, index) => {
                             return (
                                 <Link 
                                     className="font-bold"
-                                    key={category.name}
+                                    key={index}
                                     to={`/${category.name_encoded}`}    
                                 >
                                     {category.name}
@@ -91,6 +93,7 @@ const Header = () => {
         </div>
 
         {/* Search */}
+        <GifSearch />
     </nav>
   );
 };
